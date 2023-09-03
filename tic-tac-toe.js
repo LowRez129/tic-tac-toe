@@ -1,14 +1,10 @@
 const playerPrototype = (name) => {
-    let Column;
-    let Row;
-
     const makeMove = (column, row) => {
-        Column = column;
-        Row = row;
+        return {column, row};
     }
 
-    const getValue = () => console.log(Column, Row, {name});
-    return {Column, Row, makeMove, getValue};
+    const getValue = () => console.log({name});
+    return {makeMove, getValue};
 }
 
 const gameBoard = () => {
@@ -22,11 +18,21 @@ const gameBoard = () => {
     return {addMove, getValue};
 }
 
-const player1 = playerPrototype("X");
-const board = gameBoard();
+function Tic_Tac_Toe() {
+    const player1 = playerPrototype("X");
+    const board = gameBoard();
 
-const tic_tac_toe = document.querySelector(".tic-tac-toe");
-const div = document.createElement("div");
+    player1.makeMove(1, 2);
+    player1.getValue();
+    console.log();
 
-tic_tac_toe.append(div);
-tic_tac_toe.append(document.createElement("div"));
+   // board.addMove();
+
+    const tic_tac_toe = document.querySelector(".tic-tac-toe");
+    const div = document.createElement("div");
+
+    tic_tac_toe.append(div);
+    tic_tac_toe.append(document.createElement("div"));
+}
+
+Tic_Tac_Toe();
