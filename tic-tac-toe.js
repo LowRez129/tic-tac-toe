@@ -29,6 +29,9 @@ function Tic_Tac_Toe() {
     const player1 = playerPrototype("X");
     const board = gameBoard();
 
+    const BOARD = document.querySelector(".tic-tac-toe > div");
+    console.log(BOARD.getAttribute("class"));
+
     player1.makeMove(0, 2);
     player1.getValue();
 
