@@ -29,3 +29,4 @@ const tic_tac_toe = document.querySelector(".tic-tac-toe");
 const div = document.createElement("div");
 
 tic_tac_toe.append(div);
+tic_tac_toe.append(document.createElement("div"));

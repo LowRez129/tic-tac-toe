@@ -11,5 +11,22 @@ body {
 }
 
 #content {
+    height: 500px;
+    width: 500px; 
+    background-color: aqua;
+}
+
+#content > .tic-tac-toe {
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    height: 50%;
+    width: 50%;
+}
+
+#content > .tic-tac-toe > div {
     background-color: white;
+    border: solid;
+
 }
