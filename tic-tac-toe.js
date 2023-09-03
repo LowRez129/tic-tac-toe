@@ -1,10 +1,17 @@
 const playerPrototype = (name) => {
+    let move_column;
+    let move_row;
+
     const makeMove = (column, row) => {
-        return {column, row};
+        move_column = column;
+        move_row = row;
     }
 
-    const getValue = () => console.log({name});
-    return {makeMove, getValue};
+    const getColumn = () => move_column;
+    const getRow = () => move_row; 
+    const getValue = () => console.log({move_column, move_row, name});
+
+    return {makeMove, getColumn, getRow, name,getValue};
 }
 
 const gameBoard = () => {
@@ -22,17 +29,11 @@ function Tic_Tac_Toe() {
     const player1 = playerPrototype("X");
     const board = gameBoard();
 
-    player1.makeMove(1, 2);
+    player1.makeMove(0, 2);
     player1.getValue();
-    console.log();
 
-   // board.addMove();
-
-    const tic_tac_toe = document.querySelector(".tic-tac-toe");
-    const div = document.createElement("div");
-
-    tic_tac_toe.append(div);
-    tic_tac_toe.append(document.createElement("div"));
+    board.addMove(player1.getRow(), player1.getColumn(), player1.name);
+    board.getValue();
 }
 
 Tic_Tac_Toe();
