@@ -31,15 +31,34 @@ function Tic_Tac_Toe() {
     const board = gameBoard();
 
     const BOARD = document.querySelector(".tic-tac-toe");
-    BOARD.childNodes.forEach((element) => {
+    let BOARD_children = Array.from(BOARD.children)
+    BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
+            const getRandomInt = (max) => {
+                return (Math.floor(Math.random() * max));
+           };
+       
+           const checkBoardPosition = (value) => {
+               switch (BOARD_children[value].textContent) {
+                   case "O":
+                       return console.log("O: taken");
+       
+                   case "X":
+                       return console.log("X: taken by player");
+       
+                   default:
+                       BOARD_children[value].textContent = "O";
+               }
+           };
+
             if (`${player1.getRow()}-${player1.getColumn()}` == element.getAttribute("class")) {
-                console.log(`${player1.getRow()}-${player1.getColumn()}`, "=", element.getAttribute("class"));
-                element.textContent = player1.name;
-                //player2.makeMove();
+                element.textContent = "X";
+                checkBoardPosition(getRandomInt(9));
             }
         }
     )});
+
+    console.log(BOARD_children);
 
     player1.makeMove(0, 2);
     player1.getValue();
