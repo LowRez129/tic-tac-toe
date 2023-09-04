@@ -51,10 +51,19 @@ function Tic_Tac_Toe() {
                }
            };
 
-            if (`${player1.getRow()}-${player1.getColumn()}` == element.getAttribute("class")) {
-                element.textContent = "X";
-                checkBoardPosition(getRandomInt(9));
-            }
+           //`${player1.getRow()}-${player1.getColumn()}`
+
+           switch (element.textContent) {
+                case "O":
+                    return console.log("O: taken");
+
+                case "X":
+                    return console.log("X: taken by player");
+
+                default:
+                    element.textContent = "X";
+                    checkBoardPosition(getRandomInt(9));
+           }
         }
     )});
 
