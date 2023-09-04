@@ -3,11 +3,16 @@
     padding: 0;
 }
 
+html {
+    height: 100vh;
+}
+
 body {
     display: grid;
     grid-template-rows: auto;
     background-color: blueviolet;
     padding: 8px;
+    justify-items: center;
 }
 
 #content {
