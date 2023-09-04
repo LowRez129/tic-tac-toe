@@ -21,8 +21,10 @@ body {
     display: grid;
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(3, auto);
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
+    gap: 8px;
+    padding: 8px;
 }
 
 #content > .tic-tac-toe > div {
