@@ -34,25 +34,26 @@ function Tic_Tac_Toe() {
     let BOARD_children = Array.from(BOARD.children)
     BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
+
             function getRandomInt(max) {
                 return (Math.floor(Math.random() * max));
             };
 
-            function enemyMove(value) {
-                
-            switch (BOARD_children[value].textContent) {
-                case "O":
-                    return console.log("O: taken");
+            function enemyMove() {
+                let this_child = BOARD_children[getRandomInt(9)];
+                switch (this_child.textContent) {
+                    case "O":
+                        break;
 
-                case "X":
-                    return console.log("X: taken by player");
+                    case "X":
+                        break;
 
-                default:
-                    BOARD_children[value].textContent = "O";
-            }
+                    default:
+                        this_child.textContent = "O";
+                        break;
+
+                }            
             };
-
-            //`${player1.getRow()}-${player1.getColumn()}`
 
             switch (element.textContent) {
                 case "O":
@@ -63,7 +64,7 @@ function Tic_Tac_Toe() {
 
                 default:
                     element.textContent = "X";
-                    enemyMove(getRandomInt(9));
+                    enemyMove();
             }
         }
     )});
