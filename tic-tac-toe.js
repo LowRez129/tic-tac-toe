@@ -34,26 +34,27 @@ function Tic_Tac_Toe() {
     let BOARD_children = Array.from(BOARD.children)
     BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
-            const getRandomInt = (max) => {
+            function getRandomInt(max) {
                 return (Math.floor(Math.random() * max));
-           };
-       
-           const checkBoardPosition = (value) => {
-               switch (BOARD_children[value].textContent) {
-                   case "O":
-                       return console.log("O: taken");
-       
-                   case "X":
-                       return console.log("X: taken by player");
-       
-                   default:
-                       BOARD_children[value].textContent = "O";
-               }
-           };
+            };
 
-           //`${player1.getRow()}-${player1.getColumn()}`
+            function enemyMove(value) {
+                
+            switch (BOARD_children[value].textContent) {
+                case "O":
+                    return console.log("O: taken");
 
-           switch (element.textContent) {
+                case "X":
+                    return console.log("X: taken by player");
+
+                default:
+                    BOARD_children[value].textContent = "O";
+            }
+            };
+
+            //`${player1.getRow()}-${player1.getColumn()}`
+
+            switch (element.textContent) {
                 case "O":
                     return console.log("O: taken");
 
@@ -62,8 +63,8 @@ function Tic_Tac_Toe() {
 
                 default:
                     element.textContent = "X";
-                    checkBoardPosition(getRandomInt(9));
-           }
+                    enemyMove(getRandomInt(9));
+            }
         }
     )});
 
