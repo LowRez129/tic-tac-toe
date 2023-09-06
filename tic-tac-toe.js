@@ -32,6 +32,7 @@ function Tic_Tac_Toe() {
 
     const BOARD = document.querySelector(".tic-tac-toe");
     let BOARD_children = Array.from(BOARD.children)
+    let count = 0;
     BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
 
@@ -40,19 +41,20 @@ function Tic_Tac_Toe() {
             };
 
             function enemyMove() {
-                let this_child = BOARD_children[getRandomInt(9)];
-                switch (this_child.textContent) {
-                    case "O":
-                        break;
+                do {
+                    let this_child = BOARD_children[getRandomInt(9)];
+                    switch (this_child.textContent) {
+                        case "O":
+                            continue;
 
-                    case "X":
-                        break;
+                        case "X":
+                            continue;
 
-                    default:
-                        this_child.textContent = "O";
-                        break;
-
-                }            
+                        default:
+                            return this_child.textContent = "O";
+                    }        
+                }
+                while (true);
             };
 
             switch (element.textContent) {
@@ -64,7 +66,14 @@ function Tic_Tac_Toe() {
 
                 default:
                     element.textContent = "X";
-                    enemyMove();
+                    switch (count) {
+                        case 4:
+                            break;
+
+                        default:
+                            count += 1;
+                            enemyMove();
+                    }
             }
         }
     )});
