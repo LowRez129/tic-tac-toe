@@ -11,7 +11,7 @@ const playerPrototype = (name) => {
     const getRow = () => move_row; 
     const getValue = () => console.log({move_column, move_row, name});
 
-    return {makeMove, getColumn, getRow, name, getValue};
+    return {makeMove, getRow, getColumn, name, getValue};
 }
 
 const gameBoard = () => {
@@ -22,19 +22,36 @@ const gameBoard = () => {
     }
         
     const getValue = () => console.log({ROW});
-    return {addMove, getValue};
+    return {ROW, addMove, getValue};
 }
 
 function Tic_Tac_Toe() {
     const player1 = playerPrototype("X");
     const player2 = playerPrototype("O");
     const board = gameBoard();
-
     const BOARD = document.querySelector(".tic-tac-toe");
+
     let BOARD_children = Array.from(BOARD.children)
     let count = 0;
     BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
+            
+            let attribute_row = parseInt(element.getAttribute("data-row"));
+            let attribute_column = parseInt(element.getAttribute("data-column"));
+
+            switch (board.ROW[attribute_row][attribute_column]) {
+                case "X":
+                    return console.log("X: spot taken");
+                
+                case "O":
+                    return console.log("X: spot taken");
+                
+                default:
+                    player1.makeMove(attribute_row, attribute_column);
+                    board.addMove(player1.getRow(), player1.getColumn(), player1.name);
+                    element.textContent = player1.name;
+                    break;
+            }
 
             function getRandomInt(max) {
                 return (Math.floor(Math.random() * max));
@@ -51,30 +68,15 @@ function Tic_Tac_Toe() {
                             continue;
 
                         default:
+                            count += 1;
+                            console.log(count);
                             return this_child.textContent = "O";
                     }        
                 }
-                while (true);
-            };
-
-            switch (element.textContent) {
-                case "O":
-                    return console.log("O: taken");
-
-                case "X":
-                    return console.log("X: taken by player");
-
-                default:
-                    element.textContent = "X";
-                    switch (count) {
-                        case 4:
-                            break;
-
-                        default:
-                            count += 1;
-                            enemyMove();
-                    }
+                while (count != 4);
             }
+            
+            enemyMove();
         }
     )});
 }
