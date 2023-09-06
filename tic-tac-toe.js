@@ -77,14 +77,6 @@ function Tic_Tac_Toe() {
             }
         }
     )});
-
-    console.log(BOARD_children);
-
-    player1.makeMove(0, 2);
-    player1.getValue();
-
-    board.addMove(player1.getRow(), player1.getColumn(), player1.name);
-    board.getValue();
 }
 
 Tic_Tac_Toe();
