@@ -25,14 +25,42 @@ const gameBoard = () => {
     return {ROW, addMove, getValue};
 }
 
+function getRandomInt(max) {
+    return (Math.floor(Math.random() * max));
+};
+
+function enemyMove() {
+    const enemy = playerPrototype("O");
+    const board = gameBoard();
+    const BOARD = document.querySelector(".tic-tac-toe");
+
+    do {
+        enemy.makeMove(getRandomInt(3), getRandomInt(3));
+        let board_position = board.ROW[enemy.getRow()][enemy.getColumn()];
+        switch (board_position) {
+            case "O":
+                continue;
+
+            case "X":
+                continue;
+
+            default:
+                let get_div = BOARD.getElementsByClassName(`${enemy.getRow()}-${enemy.getColumn()}`);
+                console.log(get_div);
+                board.addMove(enemy.getRow(), enemy.getColumn(), enemy.name);
+                get_div.textContent = "O";
+                return;
+        }        
+    }
+    while (count != 4);
+}
+
 function Tic_Tac_Toe() {
     const player1 = playerPrototype("X");
-    const player2 = playerPrototype("O");
     const board = gameBoard();
     const BOARD = document.querySelector(".tic-tac-toe");
 
     let BOARD_children = Array.from(BOARD.children)
-    let count = 0;
     BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
             
@@ -44,39 +72,15 @@ function Tic_Tac_Toe() {
                     return console.log("X: spot taken");
                 
                 case "O":
-                    return console.log("X: spot taken");
+                    return console.log("O: spot taken");
                 
                 default:
                     player1.makeMove(attribute_row, attribute_column);
                     board.addMove(player1.getRow(), player1.getColumn(), player1.name);
                     element.textContent = player1.name;
+                    enemyMove();
                     break;
             }
-
-            function getRandomInt(max) {
-                return (Math.floor(Math.random() * max));
-            };
-
-            function enemyMove() {
-                do {
-                    let this_child = BOARD_children[getRandomInt(9)];
-                    switch (this_child.textContent) {
-                        case "O":
-                            continue;
-
-                        case "X":
-                            continue;
-
-                        default:
-                            count += 1;
-                            console.log(count);
-                            return this_child.textContent = "O";
-                    }        
-                }
-                while (count != 4);
-            }
-            
-            enemyMove();
         }
     )});
 }
