@@ -41,6 +41,7 @@ function Tic_Tac_Toe() {
         do {
             enemy.makeMove(getRandomInt(3), getRandomInt(3));
             enemy.getValue();
+            console.log(board.POSITION);
             let board_position = board.POSITION[enemy.getRow()][enemy.getColumn()];
             switch (board_position) {
                 case "O":
