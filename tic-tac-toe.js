@@ -9,7 +9,7 @@ const playerPrototype = (name) => {
 
     const getColumn = () => move_column;
     const getRow = () => move_row; 
-    const getValue = () => console.log({move_column, move_row, name});
+    const getValue = () => console.log({move_row, move_column, name});
 
     return {makeMove, getRow, getColumn, name, getValue};
 }
@@ -32,6 +32,7 @@ function Tic_Tac_Toe() {
     const enemy = playerPrototype("O");
     const board = gameBoard();
     const TIC_TAC_TOE = document.querySelector(".tic-tac-toe");
+    let count = 0;
 
     const getRandomInt = (max) => {
         return (Math.floor(Math.random() * max));
@@ -41,7 +42,6 @@ function Tic_Tac_Toe() {
         do {
             enemy.makeMove(getRandomInt(3), getRandomInt(3));
             enemy.getValue();
-            console.log(board.POSITION);
             let board_position = board.POSITION[enemy.getRow()][enemy.getColumn()];
             switch (board_position) {
                 case "O":
@@ -53,14 +53,14 @@ function Tic_Tac_Toe() {
                     break;
     
                 default:
+                    count += 1
                     const div = TIC_TAC_TOE.querySelector(`.r${enemy.getRow()}-c${enemy.getColumn()}`);
                     div.textContent = enemy.name;
                     board.addMove(enemy.getRow(), enemy.getColumn(), enemy.name);
-                    //document.querySelector().textContent = "O";
                     return;
             }        
         }
-        while (true);
+        while (count != 4);
     }
 
     let BOARD_children = Array.from(TIC_TAC_TOE.children)
