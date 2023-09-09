@@ -63,6 +63,32 @@ function Tic_Tac_Toe() {
         while (count != 4);
     }
 
+    const checkWinner = () => {
+        let board_position = board.POSITION;
+        for (let i = 0; i < board_position.length; i++) {
+            console.log(board_position[i]);
+            switch (`${board_position[i]}`) {
+                case ["X", "X", "X"].toString():
+                    console.log("WINNER");
+                    break;
+                
+                case ["O", "O", "O"]:
+                    console.log("LOSER");
+                    break;
+                
+                default:
+                    console.log("NEITHER");
+                    break;
+            }
+
+            for (let j = 0; j < board_position.length; j++) {
+                switch (board_position[i][j]) {
+                    
+                }
+            }
+        }
+    }
+
     let BOARD_children = Array.from(TIC_TAC_TOE.children)
     BOARD_children.forEach((element) => {
         element.addEventListener("click", () => {
@@ -82,6 +108,7 @@ function Tic_Tac_Toe() {
                     board.addMove(player1.getRow(), player1.getColumn(), player1.name);
                     element.textContent = player1.name;
                     enemyMove();
+                    checkWinner();
                     break;
             }
         }
