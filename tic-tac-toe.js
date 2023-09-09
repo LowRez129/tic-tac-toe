@@ -65,28 +65,41 @@ function Tic_Tac_Toe() {
 
     const checkWinner = () => {
         let board_position = board.POSITION;
+        let row_match = false;
+        let column_match = false;
         for (let i = 0; i < board_position.length; i++) {
-            console.log(board_position[i]);
             switch (`${board_position[i]}`) {
                 case ["X", "X", "X"].toString():
-                    console.log("WINNER");
+                    row_match = true;
                     break;
                 
-                case ["O", "O", "O"]:
-                    console.log("LOSER");
+                case ["O", "O", "O"].toString():
+                    row_match = true;
                     break;
                 
                 default:
-                    console.log("NEITHER");
+                    row_match = false;
                     break;
             }
 
             for (let j = 0; j < board_position.length; j++) {
-                switch (board_position[i][j]) {
+                switch (board_position[j][i]) {
+                    case "X":
+                        column_match = true;
+                        break;
+
+                    case "O":
+                        column_match = true;
+                        break;
                     
+                    default:
+                        column_match = false;
+                        break;
                 }
+                console.log(board_position[j][i]);
             }
         }
+        console.log(row_match, column_match);
     }
 
     let BOARD_children = Array.from(TIC_TAC_TOE.children)
