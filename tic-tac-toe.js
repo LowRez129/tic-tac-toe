@@ -71,17 +71,18 @@ function Tic_Tac_Toe() {
             switch (`${board_position[i]}`) {
                 case ["X", "X", "X"].toString():
                     row_match = true;
-                    break;
+                    return console.log(row_match, "WIN");
                 
                 case ["O", "O", "O"].toString():
                     row_match = true;
-                    break;
+                    return console.log(row_match, "WIN");
                 
                 default:
                     row_match = false;
                     break;
             }
 
+            let match_count = 0;
             for (let j = 0; j < board_position.length; j++) {
                 switch (board_position[j][i]) {
                     case "X":
