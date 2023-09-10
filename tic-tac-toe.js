@@ -93,6 +93,29 @@ function Tic_Tac_Toe() {
                     break;
             }
         }
+
+        let diagonal_match_x = [board_position[0][0], board_position[1][1], board_position[2][2]];
+        let diagonal_match_y = [board_position[2][0], board_position[1][1], board_position[0][2]];
+
+        switch(`${diagonal_match_x}`) {
+            case ["X", "X", "X"].toString():
+                    return console.log("WIN");
+                
+            case ["O", "O", "O"].toString():
+                return console.log("LOSE");
+            
+            default:
+                switch(`${diagonal_match_y}`) {
+                    case ["X", "X", "X"].toString():
+                            return console.log("WIN");
+                        
+                    case ["O", "O", "O"].toString():
+                        return console.log("LOSE");
+                    
+                    default:
+                        break;
+                };
+        }
     }
 
     let BOARD_children = Array.from(TIC_TAC_TOE.children)
@@ -113,8 +136,8 @@ function Tic_Tac_Toe() {
                     player1.makeMove(attribute_row, attribute_column);
                     board.addMove(player1.getRow(), player1.getColumn(), player1.name);
                     element.textContent = player1.name;
-                    enemyMove();
                     checkWinner();
+                    enemyMove();
                     break;
             }
         }
