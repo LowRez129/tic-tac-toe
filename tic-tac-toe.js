@@ -62,60 +62,38 @@ function Tic_Tac_Toe() {
         while (count != 4);
     }
 
+    const compareMatch = (value) => {
+        switch (`${value}`) {
+            case ["X", "X", "X"].toString():
+                return console.log("WIN");
+            
+            case ["O", "O", "O"].toString():
+                return console.log("LOSE");
+            
+            default:
+                break;
+        }
+    }
+
     const checkWinner = () => {
         let board_position = board.POSITION;
         
         for (let i = 0; i < board_position.length; i++) {
-            switch (`${board_position[i]}`) {
-                case ["X", "X", "X"].toString():
-                    return console.log("WIN");
-                
-                case ["O", "O", "O"].toString():
-                    return console.log("LOSE");
-                
-                default:
-                    break;
-            }
+            compareMatch(board_position[i]);
 
             let column_match = new Array;
             for (let j = 0; j < board_position.length; j++) {
                 column_match.push(board_position[j][i]);
             }
 
-            switch (`${column_match}`) {
-                case ["X", "X", "X"].toString():
-                    return console.log("WIN");
-                
-                case ["O", "O", "O"].toString():
-                    return console.log("LOSE");
-                
-                default:
-                    break;
-            }
+            compareMatch(column_match);
         }
 
         let diagonal_match_x = [board_position[0][0], board_position[1][1], board_position[2][2]];
         let diagonal_match_y = [board_position[2][0], board_position[1][1], board_position[0][2]];
 
-        switch(`${diagonal_match_x}`) {
-            case ["X", "X", "X"].toString():
-                    return console.log("WIN");
-                
-            case ["O", "O", "O"].toString():
-                return console.log("LOSE");
-            
-            default:
-                switch(`${diagonal_match_y}`) {
-                    case ["X", "X", "X"].toString():
-                            return console.log("WIN");
-                        
-                    case ["O", "O", "O"].toString():
-                        return console.log("LOSE");
-                    
-                    default:
-                        break;
-                };
-        }
+        compareMatch(diagonal_match_x);
+        compareMatch(diagonal_match_y);
     }
 
     let BOARD_children = Array.from(TIC_TAC_TOE.children)
