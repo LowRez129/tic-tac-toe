@@ -33,12 +33,12 @@ function Tic_Tac_Toe() {
     const board = gameBoard();
     const TIC_TAC_TOE = document.querySelector(".tic-tac-toe");
     let count = 0;
-
-    const getRandomInt = (max) => {
-        return (Math.floor(Math.random() * max));
-    };
     
     const enemyMove = () => {
+        const getRandomInt = (max) => {
+            return (Math.floor(Math.random() * max));
+        };
+
         do {
             enemy.makeMove(getRandomInt(3), getRandomInt(3));
             let board_position = board.POSITION[enemy.getRow()][enemy.getColumn()];
@@ -62,20 +62,21 @@ function Tic_Tac_Toe() {
         while (count != 4);
     }
 
-    const compareMatch = (value) => {
-        switch (`${value}`) {
-            case ["X", "X", "X"].toString():
-                return console.log("WIN");
-            
-            case ["O", "O", "O"].toString():
-                return console.log("LOSE");
-            
-            default:
-                break;
-        }
-    }
 
     const checkWinner = () => {
+        const compareMatch = (value) => {
+            switch (`${value}`) {
+                case ["X", "X", "X"].toString():
+                    return console.log("WIN");
+                
+                case ["O", "O", "O"].toString():
+                    return console.log("LOSE");
+                
+                default:
+                    break;
+            }
+        }
+
         let board_position = board.POSITION;
         
         for (let i = 0; i < board_position.length; i++) {
