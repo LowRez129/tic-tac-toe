@@ -41,7 +41,6 @@ function Tic_Tac_Toe() {
     const enemyMove = () => {
         do {
             enemy.makeMove(getRandomInt(3), getRandomInt(3));
-            enemy.getValue();
             let board_position = board.POSITION[enemy.getRow()][enemy.getColumn()];
             switch (board_position) {
                 case "O":
@@ -65,42 +64,35 @@ function Tic_Tac_Toe() {
 
     const checkWinner = () => {
         let board_position = board.POSITION;
-        let row_match = false;
-        let column_match = false;
+        
         for (let i = 0; i < board_position.length; i++) {
             switch (`${board_position[i]}`) {
                 case ["X", "X", "X"].toString():
-                    row_match = true;
-                    return console.log(row_match, "WIN");
+                    return console.log("WIN");
                 
                 case ["O", "O", "O"].toString():
-                    row_match = true;
-                    return console.log(row_match, "WIN");
+                    return console.log("LOSE");
                 
                 default:
-                    row_match = false;
                     break;
             }
 
-            let match_count = 0;
+            let column_match = new Array;
             for (let j = 0; j < board_position.length; j++) {
-                switch (board_position[j][i]) {
-                    case "X":
-                        column_match = true;
-                        break;
+                column_match.push(board_position[j][i]);
+            }
 
-                    case "O":
-                        column_match = true;
-                        break;
-                    
-                    default:
-                        column_match = false;
-                        break;
-                }
-                console.log(board_position[j][i]);
+            switch (`${column_match}`) {
+                case ["X", "X", "X"].toString():
+                    return console.log("WIN");
+                
+                case ["O", "O", "O"].toString():
+                    return console.log("LOSE");
+                
+                default:
+                    break;
             }
         }
-        console.log(row_match, column_match);
     }
 
     let BOARD_children = Array.from(TIC_TAC_TOE.children)
